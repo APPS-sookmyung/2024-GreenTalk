@@ -1,0 +1,55 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.container {
+  width: 90%; /* 화면 양쪽에 약간의 여백을 두어 중앙에 정렬 */
+  margin: auto;
+  display: grid;
+  /* 기본적으로 1열 설정, 화면 크기에 따라 변하도록 설정 */
+  grid-template-columns: repeat(1, 1fr);
+  gap: 20px;
+}
+
+.image-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 이미지를 중앙에 정렬 */
+  justify-content: center; /* 이미지를 중앙에 정렬 */
+  overflow: hidden; /* 이미지가 너무 크면 잘리도록 설정 */
+}
+
+.image-item img {
+  width: 100%;
+  max-width: 300px; /* 이미지 크기를 적절히 조절 */
+  height: 200px; /* 일정한 높이로 이미지 설정 */
+  object-fit: cover; /* 이미지를 자르더라도 전체 영역을 덮도록 설정 */
+  border-radius: 8px; /* 둥근 모서리 추가 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+figcaption {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #555;
+  text-align: center;
+}
+
+/* 미디어 쿼리로 반응형 레이아웃 설정 */
+@media (min-width: 480px) {
+  .container {
+    grid-template-columns: repeat(2, 1fr); /* 2열로 변경 */
+  }
+}
+
+@media (min-width: 960px) {
+  .container {
+    grid-template-columns: repeat(3, 1fr); /* 3열로 변경 */
+  }
+}
