@@ -12,19 +12,20 @@
     <nav class="navbar">
       <div class="navbar__logo">
         <i class="fa-brands fa-pagelines"></i>
-        <a href="#">GreenTalk</a>
+        <a href="#home">GreenTalk</a>
       </div>
       <ul class="navbar__menu">
-        <li><a href="#">Home</a></li>
-        <li><a href="./gallery.html">Gallery</a></li>
-        <li><a href="#">QnA</a></li>
-        <li><a href="#">My plant</a></li>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#qna">QnA</a></li>
+        <li><a href="my-plant.html">My Plant</a></li>
       </ul>
       <a href="#" class="navbar__toggleBtn">
         <i class="fas fa-bars"></i>
       </a>
     </nav>
-    <section class="hero">
+
+    <section id="home" class="hero">
       <div class="container">
         <h2>자연과 함께하는 이야기</h2>
         <p>나만의 공간에 자연의 생명을 불어 넣으세요.</p>
@@ -32,63 +33,80 @@
       </div>
     </section>
 
-    <section class="trusted">
+    <section id="gallery" class="gallery">
+      <h1>Gallery</h1>
       <div class="container">
-        <h3>같이 참고하면 좋은 사이트</h3>
-        <div class="logos">
-          <i class="fa-brands fa-canadian-maple-leaf"></i>
-          <img src="./image/10.png" alt="산림청" />
-        </div>
+        <figure
+          class="image-item"
+          data-title="반려 동물과 함께 키울 수 있는 식물들"
+          data-description="반려동물과 함께 키우기 좋은 식물은 독성이 없고 관리하기 쉬운 식물입니다."
+          data-img="image/g1.1.avif"
+          data-additional-text="반려동물과 함께 키우기 좋은 대표적인 식물로는 고무나무, 페페로미아, 필로덴드론 등이 있습니다. 이 식물들은 독성이 없으며 관리하기 쉬워 반려동물과 함께 생활하기에 적합합니다."
+          data-additional-img="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/162734008415898099.jpg?gif=1&w=480&h=480&c=c&q=1"
+        >
+          <img src="./image/g10.jpg" alt="반려 동물과 함께 키울 수 있는 식물 리스트" />
+          <figcaption>반려 동물과 함께 키울 수 있는 식물들</figcaption>
+        </figure>
+
+        <figure class="image-item">
+          <img src="./image/g4.jpg" alt="Image 2" />
+          <figcaption>벌레 잡는 식물들</figcaption>
+        </figure>
+        <figure class="image-item">
+          <img src="./image/g1.jpg" alt="Image 3" />
+          <figcaption>나사 선정 공기 정화하는 식물들</figcaption>
+        </figure>
+        <figure class="image-item">
+          <img src="./image/g5.jpg" alt="Image 4" />
+          <figcaption>향기가 좋은 식물들</figcaption>
+        </figure>
+        <figure class="image-item">
+          <img src="./image/g6.jpg" alt="Image 5" />
+          <figcaption>식물 킬러도 키울 수 있는 식물들</figcaption>
+        </figure>
+        <figure class="image-item">
+          <img src="./image/g2.jpg" alt="Image 6" />
+          <figcaption>채광 안 좋아도 괜찮은 식물들</figcaption>
+        </figure>
       </div>
     </section>
 
-    <section class="layout">
-      <div class="vision">
-        <div class="container">
-          <h2>Our Vision: Crafting Home Stories</h2>
-          <p>In our world of décor, we believe every home has a unique story waiting to be told.</p>
-          <a href="#" class="btn">Explore Collection</a>
-        </div>
+    <section id="qna" class="gallery">
+      <h1>QnA</h1>
+      <div class="container">
+        <figure class="image-item">
+          <img src="./image/qna1.jpg" alt="QnA Image 1" />
+          <figcaption>자주 묻는 질문 1</figcaption>
+        </figure>
+        <figure class="image-item">
+          <img src="./image/qna2.jpg" alt="QnA Image 2" />
+          <figcaption>자주 묻는 질문 2</figcaption>
+        </figure>
+        <figure class="image-item">
+          <img src="./image/qna3.jpg" alt="QnA Image 3" />
+          <figcaption>자주 묻는 질문 3</figcaption>
+        </figure>
+        <figure class="image-item">
+          <img src="./image/qna4.jpg" alt="QnA Image 4" />
+          <figcaption>자주 묻는 질문 4</figcaption>
+        </figure>
+        <figure class="image-item">
+          <img src="./image/qna5.jpg" alt="QnA Image 5" />
+          <figcaption>자주 묻는 질문 5</figcaption>
+        </figure>
+        <figure class="image-item">
+          <img src="./image/qna6.jpg" alt="QnA Image 6" />
+          <figcaption>자주 묻는 질문 6</figcaption>
+        </figure>
       </div>
-      <div class="photo-1">
-        <div class="photo-content">
-          <p>선인장</p>
-          <a href="#" class="btn">자세히 알아보기</a>
-        </div>
-      </div>
-      <div class="photo-2">
-        <div class="photo-content">
-          <p>무슨 식물</p>
-          <a href="#" class="btn">자세히 알아보기</a>
-        </div>
-      </div>
-      <aside class="discover">
-        <div class="container">
-          <h3>Discover Unique Home Decor</h3>
-          <p>Explore our exclusive home décor collection and bring unique touches to your home.</p>
-          <a href="#" class="btn">Explore Collection</a>
-        </div>
-      </aside>
     </section>
+
     <footer>
       <div class="container">
-        <div class="quick-links">
-          <h4>Quick Action</h4>
-          <ul>
-            <li><a href="#">Home Stories</a></li>
-            <li><a href="#">Join Our Circle</a></li>
-            <li><a href="#">Contact Us</a></li>
-            <li><a href="#">Privacy Policy</a></li>
-            <li><a href="#">Terms & Conditions</a></li>
-          </ul>
-        </div>
         <div class="contact">
           <h4>Contact Us</h4>
-          <p>PlantTalk</p>
-          <p>For any inquiries, reach us at support@planttalk.com</p>
+          <p>For any inquiries, reach us at support@greentalk.com</p>
         </div>
-      </div>
-      <div class="container">
         <p>&copy; 2024 GreenTalk. All rights reserved.</p>
       </div>
     </footer>
