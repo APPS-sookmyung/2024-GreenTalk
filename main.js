@@ -36,13 +36,14 @@ modal.classList.add("modal");
 const modalContent = document.createElement("div");
 modalContent.classList.add("modal-content");
 
+modal.appendChild(modalContent);
+document.body.appendChild(modal);
+
+// 모달 닫기 버튼을 생성 및 추가
 const closeBtn = document.createElement("span");
 closeBtn.classList.add("modal-close");
 closeBtn.innerHTML = "&times;";
-
 modalContent.appendChild(closeBtn);
-modal.appendChild(modalContent);
-document.body.appendChild(modal);
 
 imageItems.forEach((item) => {
   item.addEventListener("click", () => {
@@ -51,6 +52,8 @@ imageItems.forEach((item) => {
     const imgSrc = item.dataset.img;
     const additionalText = item.dataset.additionalText;
     const additionalImgSrc = item.dataset.additionalImg;
+
+    document.body.style.overflow = "hidden";
 
     modal.style.display = "block";
     modalContent.innerHTML = `
@@ -68,5 +71,6 @@ imageItems.forEach((item) => {
 document.addEventListener("click", (e) => {
   if (e.target.classList.contains("modal-close") || e.target.classList.contains("modal")) {
     modal.style.display = "none";
+    document.body.style.overflow = "auto"; //모달이 닫힐 때 배경 스크롤을 다시 활성화
   }
 });
