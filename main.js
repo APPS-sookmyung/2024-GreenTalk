@@ -59,10 +59,11 @@ imageItems.forEach((item) => {
     modalContent.innerHTML = `
       <span class="modal-close">&times;</span>
       <h2>${title}</h2>
-      <img src="${imgSrc}" style="width: 100%; height: auto; border-radius: 10px;">
+      <img src="${imgSrc}" style="width: 100%; height: auto; border-radius: 10px; margin-bottom: 20px;">
       <p>${description}</p>
-      <img src="${additionalImgSrc}" style="width: 100%; height: auto; border-radius: 10px; margin-top: 20px;">
+      <img src="./image/m1image1.avif" style="width: 100%; height: auto; border-radius: 10px; margin-bottom: 20px;">
       <p>${additionalText}</p>
+      <img src="${additionalImgSrc}" style="width: 100%; height: auto; border-radius: 10px; margin-top: 20px;">
     `;
   });
 });
@@ -74,3 +75,21 @@ document.addEventListener("click", (e) => {
     document.body.style.overflow = "auto"; //모달이 닫힐 때 배경 스크롤을 다시 활성화
   }
 });
+
+// 저장된 데이터를 불러와 화면에 출력
+const journalEntries = document.getElementById("journalEntries");
+
+function loadJournalEntries() {
+  const entries = JSON.parse(localStorage.getItem("journalEntries")) || [];
+  journalEntries.innerHTML = "";
+  entries.forEach((entry, index) => {
+    journalEntries.innerHTML += `
+      <div class="journal-entry">
+        <h4>${entry.plantName}</h4>
+        <p>물 준 날짜: ${entry.wateringDate}</p>
+        <p>메모: ${entry.notes}</p>
+        <button onclick="deleteEntry(${index})">삭제</button>
+      </div>
+    `;
+  });
+}
