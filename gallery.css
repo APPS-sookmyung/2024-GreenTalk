@@ -1,0 +1,171 @@
+body {
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+  width: 96%;
+  background-color: white;
+}
+
+h1 {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f0f0f0;
+  padding: 20px 30px;
+  border-radius: 10px;
+  margin-top: 20px;
+  position: relative;
+}
+
+.navbar__logo {
+  font-size: 24px;
+  color: #333;
+}
+
+.navbar__logo a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.navbar__menu {
+  display: flex;
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.navbar__menu li {
+  padding: 8px 12px;
+}
+
+.navbar__menu li a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.navbar__toggleBtn {
+  font-size: 24px;
+  color: #333;
+  display: none; /* 큰 화면에서 숨김 */
+}
+
+.container {
+  width: 90%; /* 화면 양쪽에 약간의 여백을 두어 중앙에 정렬 */
+  margin: auto;
+  display: grid;
+  /* 기본적으로 1열 설정, 화면 크기에 따라 변하도록 설정 */
+  grid-template-columns: repeat(1, 1fr);
+  gap: 20px;
+}
+
+.image-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 이미지를 중앙에 정렬 */
+  justify-content: center; /* 이미지를 중앙에 정렬 */
+  overflow: hidden; /* 이미지가 너무 크면 잘리도록 설정 */
+}
+
+.image-item img {
+  width: 100%;
+  max-width: 300px; /* 이미지 크기를 적절히 조절 */
+  height: 200px; /* 일정한 높이로 이미지 설정 */
+  object-fit: cover; /* 이미지를 자르더라도 전체 영역을 덮도록 설정 */
+  border-radius: 8px; /* 둥근 모서리 추가 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+figcaption {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #555;
+  text-align: center;
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+footer .quick-links,
+footer .contact {
+  width: 45%;
+}
+
+footer .quick-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+footer .quick-links ul li {
+  margin-bottom: 10px;
+}
+
+footer .quick-links ul li a {
+  text-decoration: none;
+  color: #333;
+}
+
+footer .contact p {
+  margin: 10px 0;
+}
+
+footer .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  border-top: 1px solid #ddd;
+}
+
+/* 미디어 쿼리로 반응형 레이아웃 설정 */
+.navbar__toggleBtn {
+  display: block; /* 작은 화면에서 표시 */
+}
+
+.navbar__menu {
+  display: none; /* 작은 화면에서는 숨김 */
+  flex-direction: column; /* 목록 형식으로 표시 */
+  align-items: center;
+  position: absolute;
+  top: 100%; /* 햄버거 버튼 바로 아래에 위치 */
+  left: 0;
+  background-color: #f0f0f0;
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+.navbar__menu.active {
+  display: flex; /* 활성화 시 보이기 */
+}
+
+.navbar__menu li {
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+}
+
+.navbar__menu li:last-child {
+  border-bottom: none;
+}
+@media (min-width: 480px) {
+  .container {
+    grid-template-columns: repeat(2, 1fr); /* 2열로 변경 */
+  }
+}
+
+@media (min-width: 960px) {
+  .container {
+    grid-template-columns: repeat(3, 1fr); /* 3열로 변경 */
+  }
+}
