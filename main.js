@@ -61,7 +61,6 @@ imageItems.forEach((item) => {
       <h2>${title}</h2>
       <img src="${imgSrc}" style="width: 100%; height: auto; border-radius: 10px; margin-bottom: 20px;">
       <p>${description}</p>
-      <img src="./image/m1image1.avif" style="width: 100%; height: auto; border-radius: 10px; margin-bottom: 20px;">
       <p>${additionalText}</p>
       <img src="${additionalImgSrc}" style="width: 100%; height: auto; border-radius: 10px; margin-top: 20px;">
     `;
@@ -76,9 +75,9 @@ document.addEventListener("click", (e) => {
   }
 });
 
-// 저장된 데이터를 불러와 화면에 출력
 const journalEntries = document.getElementById("journalEntries");
 
+// 로컬 스토리지에서 일기 목록 불러오기
 function loadJournalEntries() {
   const entries = JSON.parse(localStorage.getItem("journalEntries")) || [];
   journalEntries.innerHTML = "";
@@ -86,10 +85,60 @@ function loadJournalEntries() {
     journalEntries.innerHTML += `
       <div class="journal-entry">
         <h4>${entry.plantName}</h4>
-        <p>물 준 날짜: ${entry.wateringDate}</p>
+        <p>날짜: ${entry.date}</p>
         <p>메모: ${entry.notes}</p>
         <button onclick="deleteEntry(${index})">삭제</button>
       </div>
     `;
   });
 }
+
+// 저장 버튼 눌렀을 때 처리
+document.querySelector("#journalForm").addEventListener("submit", function (event) {
+  event.preventDefault(); // 폼의 기본 동작(페이지 새로고침) 방지
+
+  const plantNameInput = document.querySelector("#plantName"); // 식물 이름 필드 가져오기
+  const dateInput = document.querySelector("#date"); // 날짜 필드 가져오기
+  const notesInput = document.querySelector("#notes"); // 메모 필드 가져오기
+
+  const entry = {
+    plantName: plantNameInput.value,
+    date: dateInput.value,
+    notes: notesInput.value,
+  };
+
+  if (entry.plantName.trim() !== "" && entry.date.trim() !== "" && entry.notes.trim() !== "") {
+    // 입력 내용이 비어있지 않으면
+    saveJournalEntry(entry); // 로컬 스토리지에 저장
+    loadJournalEntries(); // 목록 새로 고침
+    plantNameInput.value = ""; // 입력 필드 비우기
+    dateInput.value = ""; // 날짜 필드 비우기
+    notesInput.value = ""; // 메모 필드 비우기
+  }
+});
+
+// 로컬 스토리지에 일기 저장
+function saveJournalEntry(entry) {
+  const entries = JSON.parse(localStorage.getItem("journalEntries")) || [];
+  entries.push(entry); // 새로운 일기 추가
+  localStorage.setItem("journalEntries", JSON.stringify(entries)); // 로컬 스토리지에 저장
+}
+
+// 삭제 기능
+function deleteEntry(index) {
+  const entries = JSON.parse(localStorage.getItem("journalEntries")) || [];
+  entries.splice(index, 1); // 해당 인덱스의 일기 삭제
+  localStorage.setItem("journalEntries", JSON.stringify(entries)); // 로컬 스토리지에 저장
+  loadJournalEntries(); // 목록 새로 고침
+}
+
+// 페이지 로드 시 일기 목록 불러오기
+document.addEventListener("DOMContentLoaded", loadJournalEntries);
+
+// main.js
+
+document.getElementById("questionForm").addEventListener("submit", function (event) {
+  event.preventDefault(); // 기본 제출 동작 방지
+  alert("질문이 등록되었습니다."); // 알림창 표시
+  this.reset(); // 폼 초기화
+});

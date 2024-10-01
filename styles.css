@@ -131,8 +131,13 @@ footer {
   line-height: 200%;
 }
 
-.gallery .container,
 .section .container {
+  display: flex;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+}
+
+.gallery .container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
@@ -164,81 +169,50 @@ figcaption {
   margin-top: 10px;
   font-size: 14px;
   color: #555;
-  text-align: center;
 }
 
 /* 모달 창 스타일 */
 .modal {
-  display: none; /* 기본적으로 안보이게 */
+  display: none;
   position: fixed;
   z-index: 1001;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  overflow: hidden; /* 배경 스크롤 방지 */
+  overflow: hidden;
   background-color: rgba(0, 0, 0, 0.5);
 }
 
 .modal-content {
   background-color: #fff;
   position: fixed;
-  bottom: -100%; /* 처음에는 화면 밖에 위치 */
+  bottom: -100%;
   left: 50%;
   transform: translateX(-50%);
   padding: 20px;
   border-radius: 10px;
-  width: 97%; /* 화면 가로 크기에 맞추어 조정 */
+  width: 97%;
   max-width: 1500px;
-  height: calc(100% - 67.5px); /* 화면 높이 - 네비게이션 바 높이 */
-  overflow-y: auto; /* 내용이 길어지면 스크롤 가능 */
-  animation: slideUp 0.5s forwards; /* 애니메이션 추가 */
-  overflow-y: scroll; /* 세로 스크롤을 활성화 */
-  scrollbar-width: none; /* Firefox용 스크롤바 숨기기 */
-  -ms-overflow-style: none; /* IE 및 Edge용 스크롤바 숨기기 */
+  height: calc(100% - 67.5px);
+  overflow-y: auto;
+  animation: slideUp 0.5s forwards;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
-/* Chrome, Safari, Edge, Opera용 스크롤바 숨기기 */
 .modal-content::-webkit-scrollbar {
   width: 0;
   height: 0;
 }
 
-/* 모달 애니메이션 */
 @keyframes slideUp {
   from {
-    top: 100%; /* 화면 아래에서 시작 */
+    top: 100%;
   }
   to {
-    top: 67.5px; /* 네비게이션 바 아래에 위치 */
+    top: 67.5px;
   }
-}
-
-.modal-content img {
-  margin-bottom: 20px; /* 이미지들 사이에 공간 */
-}
-
-.modal-content h2 {
-  font-size: 28px;
-  margin-bottom: 20px;
-  color: #1a871a; /* 텍스트 색상을 변경하여 강조 */
-  text-align: center; /* 제목을 중앙 정렬 */
-}
-
-.modal-content p {
-  font-size: 18px;
-  line-height: 1.6;
-  margin-bottom: 20px;
-  color: #444; /* 텍스트 색상 변경 */
-  text-align: justify; /* 텍스트를 양쪽 정렬하여 가독성 향상 */
-}
-
-.modal-content img {
-  width: 100%;
-  height: auto;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
-  margin-bottom: 20px;
 }
 
 .modal-close {
@@ -246,13 +220,13 @@ figcaption {
   top: 20px;
   right: 20px;
   color: #fa8072;
-  font-size: 32px; /* 크기 확대 */
+  font-size: 32px;
   font-weight: bold;
 }
 
 .modal-close:hover,
 .modal-close:focus {
-  color: #ff0000; /* 닫기 버튼 호버 시 색상 변경 */
+  color: #ff0000;
   text-decoration: none;
   cursor: pointer;
 }
@@ -308,29 +282,92 @@ figcaption {
   }
 }
 
-.section h3 {
-  margin: 15px auto;
+/* Journal 섹션 */
+.journal.container,
+.faq-container {
+  display: flex; /* 두 섹션을 수평으로 배치 */
+  gap: 20px; /* 두 섹션 간의 간격 설정 */
+}
+
+.journal-entry {
+  margin-bottom: 15px;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.journal-entry h4 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.journal-entry p {
+  margin: 5px 0;
+  color: #555;
+}
+
+.form-groups {
+  flex: 1; /* 첫 번째 섹션의 너비를 1로 설정 */
+}
+
+.journal-entries-section {
+  flex: 2; /* 두 번째 섹션의 너비를 2로 설정 (더 넓게) */
+}
+
+#journalForm {
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#journalForm .form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+#journalForm input,
+#journalForm textarea {
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+#journalEntries {
+  padding: 20px;
+  margin: 10px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* FAQ 스타일 */
+.accordion-title {
+  display: block;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px; /* 아래쪽 여백 */
+  text-align: center; /* 중앙 정렬 */
+}
+
+.accordion {
+  width: 70%;
+  margin: 10px auto;
+  border-radius: 15px;
+  overflow: hidden;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* 라디오 버튼 숨기기 */
 input[id*="answer"] {
   display: none;
 }
-/* 질문 덩어리 가운데 정렬 */
-.accordion {
-  width: 60%; /* 화면의 60%로 설정하여 중앙 배치 */
-  margin: 0 auto; /* 페이지 가운데 정렬 */
-  border-radius: 15px; /* 둥근 모서리 */
-  overflow: hidden; /* 둥근 모서리 안에서 내용이 넘치지 않게 */
-  border: 1px solid #ddd; /* 질문 덩어리 테두리 */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 약간의 그림자 추가 */
-}
 
-/* 각 질문 구별을 위한 선 */
 input[id*="answer"] + label {
   display: block;
   padding: 20px;
-  border-bottom: 1px solid #ddd; /* 연한 선 추가 */
+  border-bottom: 1px solid #ddd;
   color: #333;
   font-weight: 900;
   background: #f1f1f1;
@@ -338,28 +375,24 @@ input[id*="answer"] + label {
   position: relative;
 }
 
-/* 마지막 질문의 아래쪽 선 제거 */
 input[id*="answer"]:last-of-type + label {
   border-bottom: none;
 }
 
-/* 질문과 답변 사이의 전환 애니메이션 */
 input[id*="answer"] + label + div {
   max-height: 0;
   transition: all 0.35s;
   overflow: hidden;
   background: #fafafa;
   font-size: 12px;
-  padding: 0; /* padding을 0으로 설정해서 초기 크기 제로 */
+  padding: 0;
 }
 
-/* 질문이 선택된 경우 */
 input[id*="answer"]:checked + label + div {
-  max-height: 150px; /* 충분한 높이로 설정 */
-  padding: 20px; /* 답변 텍스트에 여백 추가 */
+  max-height: 150px;
+  padding: 20px;
 }
 
-/* 아이콘 스타일 (이미지 확인용) */
 input[id*="answer"] + label em {
   position: absolute;
   top: 50%;
@@ -368,17 +401,70 @@ input[id*="answer"] + label em {
   height: 30px;
   margin-top: -15px;
   display: inline-block;
-  background: url("./image/downArrow.png") 0 0 no-repeat;
-  background-size: cover; /* 이미지 크기 맞춤 */
+  background: url("") 0 0 no-repeat;
+  background-size: cover;
 }
 
-#about p {
-  text-align: left;
-}
-
-/* 전체 섹션 가운데 정렬을 위해 */
 .section {
   text-align: center;
+}
+
+/* 질문 작성 섹션 */
+.question-form {
+  flex: 1; /* 질문 작성 섹션의 너비를 1로 설정 */
+  margin: auto;
+  padding: 20px; /* Padding for spacing */
+  background-color: #f9f9f9; /* Background color */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+}
+
+.question-form h2 {
+  margin-bottom: 10px; /* Margin below heading */
+}
+
+#questionForm {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#questionForm .form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+#questionForm input {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+#questionForm button {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #28a745;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#questionForm button:hover {
+  background-color: #218838;
+}
+
+/* Footer 스타일 */
+footer {
+  text-align: center;
+  padding: 20px;
+  color: #333;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+}
+
+footer p {
+  margin: 0;
 }
 
 /* 모바일 대응: 작은 화면에서는 더 좁게 */
