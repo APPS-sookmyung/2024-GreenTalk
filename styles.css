@@ -172,6 +172,7 @@ figcaption {
 }
 
 /* 모달 창 스타일 */
+/* 공통 모달 스타일 */
 .modal {
   display: none;
   position: fixed;
@@ -205,7 +206,7 @@ figcaption {
   width: 0;
   height: 0;
 }
-
+/* 모달 애니메이션 */
 @keyframes slideUp {
   from {
     top: 100%;
@@ -342,6 +343,20 @@ figcaption {
 }
 
 /* FAQ 스타일 */
+
+.question-form,
+#journalEntries {
+  border: 1px solid lightgray;
+}
+
+.accordion-section {
+  margin: 0 10px; /* 좌우 margin을 줄임 */
+}
+
+.accordion-section + .question-form {
+  margin-top: 10px; /* 두 섹션 사이의 상하 간격을 줄임 */
+}
+
 .accordion-title {
   display: block;
   font-size: 20px;
@@ -359,6 +374,23 @@ figcaption {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.btn {
+  background-color: #4caf50; /* 통일된 배경색 */
+  border: 1px solid #4caf50; /* 통일된 테두리 */
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.btn:hover {
+  background-color: #218838;
+}
+
 /* 라디오 버튼 숨기기 */
 input[id*="answer"] {
   display: none;
@@ -370,7 +402,7 @@ input[id*="answer"] + label {
   border-bottom: 1px solid #ddd;
   color: #333;
   font-weight: 900;
-  background: #f1f1f1;
+  background: #f9f9f9;
   cursor: pointer;
   position: relative;
 }
@@ -420,7 +452,7 @@ input[id*="answer"] + label em {
 }
 
 .question-form h2 {
-  margin-bottom: 10px; /* Margin below heading */
+  margin-bottom: 10px;
 }
 
 #questionForm {
@@ -438,20 +470,6 @@ input[id*="answer"] + label em {
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #ccc;
-}
-
-#questionForm button {
-  padding: 10px;
-  border-radius: 5px;
-  border: none;
-  background-color: #28a745;
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-#questionForm button:hover {
-  background-color: #218838;
 }
 
 /* Footer 스타일 */
@@ -530,11 +548,11 @@ footer p {
 #journalForm textarea {
   padding: 10px;
   border-radius: 5px;
-  border: 1px solid #ccc;
+  border: 1px solid #lightgray;
 }
 
 #journalEntries {
-  margin-top: 30px;
+  margin-top: 10px;
   padding: 20px;
   background-color: #f9f9f9;
   border-radius: 10px;

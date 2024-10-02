@@ -137,7 +137,15 @@
             <div class="form-group">
               <input type="text" placeholder="질문을 작성하세요" required />
             </div>
-            <button type="submit">작성 완료</button>
+            <button class="btn">작성 완료</button>
+            <button class="btn" id="check-answers-btn">답변 확인하기</button>
+            <!-- 답변 확인하기 모달 -->
+            <div id="answer-modal" class="modal">
+              <div class="modal-content">
+                <span class="modal-close">&times;</span>
+                <p id="answer-text">여기에 답변 내용이 들어갑니다.</p>
+              </div>
+            </div>
           </form>
         </div>
       </div>
@@ -160,7 +168,7 @@
               <label for="notes">메모</label>
               <textarea id="notes" placeholder="기타 메모"></textarea>
             </div>
-            <button type="submit">저장</button>
+            <button class="btn">저장</button>
           </form>
         </div>
 
