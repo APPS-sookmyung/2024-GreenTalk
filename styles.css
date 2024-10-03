@@ -186,6 +186,7 @@ figcaption {
 }
 
 .modal-content {
+  text-align: center;
   background-color: #fff;
   position: fixed;
   bottom: -100%;
@@ -341,6 +342,7 @@ figcaption {
 }
 
 #journalEntries {
+  text-align: center;
   padding: 20px;
   margin: 10px;
   background-color: #f9f9f9;
