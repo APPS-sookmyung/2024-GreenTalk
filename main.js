@@ -60,9 +60,8 @@ imageItems.forEach((item) => {
     modalContent.innerHTML = `
       <span class="modal-close">&times;</span>
       <h2>${title}</h2>
-      <img src="${imgSrc}" style="width: 100%; height: auto; border-radius: 10px; margin-bottom: 20px;">
       <p>${description}</p>
-      <p>${additionalText}</p>
+      <div>${additionalText}</div>
       <img src="${additionalImgSrc}" style="width: 100%; height: auto; border-radius: 10px; margin-top: 20px;">
     `;
   });
