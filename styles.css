@@ -469,10 +469,9 @@ input[id*="answer"] + label em {
   background-size: cover;
 }
 
-.section {
+.accordion-section {
   text-align: center;
 }
-
 /* 질문 작성 섹션 */
 .question-form {
   flex: 1; /* 질문 작성 섹션의 너비를 1로 설정 */
