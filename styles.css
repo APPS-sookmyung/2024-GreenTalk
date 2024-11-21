@@ -50,13 +50,23 @@ ul {
 }
 
 .navbar__logo {
+  display: flex;
   font-size: 24px;
   color: #333;
 }
 
 .navbar__logo a {
+  padding: 4px 0;
   text-decoration: none;
   color: inherit;
+}
+
+.navbar__logo-image {
+  height: 32px;
+  width: auto;
+  margin: 0;
+  padding: 0;
+  vertical-align: middle;
 }
 
 .navbar__menu {
