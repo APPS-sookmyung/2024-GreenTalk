@@ -29,7 +29,7 @@ toggleBtn.addEventListener("click", () => {
 });
 
 document.addEventListener("click", (event) => {
-  if (!menu.contains(event.target) && !toggleBtn.contains(event.target)) {
+  if (!menu.contains(event.target) && !toggleBtn.contains(event.target) && !event.target.matches("label") && !event.target.matches("em")) {
     menu.classList.remove("active");
     menu.style.display = "none";
   }
