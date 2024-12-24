@@ -1,118 +1,168 @@
-import React, { useState } from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App";
+const sections = document.querySelectorAll("section");
+const navLi = document.querySelectorAll(".navbar__menu li a");
 
-// ReactDOM 렌더링
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+window.addEventListener("scroll", () => {
+  let current = "";
 
-// React 컴포넌트 예시
+  sections.forEach((section) => {
+    const sectionTop = section.offsetTop;
+    const sectionHeight = section.clientHeight;
+    if (pageYOffset >= sectionTop - sectionHeight / 3) {
+      current = section.getAttribute("id");
+    }
+  });
 
-function Gallery() {
-  const [modalVisible, setModalVisible] = useState(false);
-  const [modalContent, setModalContent] = useState({});
+  navLi.forEach((li) => {
+    li.classList.remove("active");
+    if (li.getAttribute("href").includes(current)) {
+      li.classList.add("active");
+    }
+  });
+});
 
-  const imageItems = [
-    { id: 1, title: "Plant 1", description: "This is a plant", img: "plant1.jpg" },
-    // 다른 이미지 데이터들...
-  ];
+// 메뉴 토글 버튼 이벤트 (모바일 대응)
+const toggleBtn = document.querySelector(".navbar__toggleBtn");
+const menu = document.querySelector(".navbar__menu");
 
-  const openModal = (item) => {
-    setModalContent(item);
-    setModalVisible(true);
-  };
+toggleBtn.addEventListener("click", () => {
+  menu.style.display = menu.style.display === "none" ? "block" : "none";
+});
 
-  const closeModal = () => {
-    setModalVisible(false);
-  };
+document.addEventListener("click", (event) => {
+  if (!menu.contains(event.target) && !toggleBtn.contains(event.target)) {
+    menu.classList.remove("active");
+    menu.style.display = "none";
+  }
+});
 
-  return (
-    <div>
-      <div className="gallery">
-        {imageItems.map((item) => (
-          <div className="image-item" key={item.id} onClick={() => openModal(item)}>
-            <img src={item.img} alt={item.title} />
-            <p>{item.title}</p>
-          </div>
-        ))}
+// 이미지 클릭 시 모달 창 띄우기
+const imageItems = document.querySelectorAll(".image-item");
+const modal = document.createElement("div");
+modal.classList.add("modal", "common-modal"); // 공통 모달 스타일 추가
+
+const modalContent = document.createElement("div");
+modalContent.classList.add("modal-content");
+
+modal.appendChild(modalContent);
+document.body.appendChild(modal);
+
+// 모달 닫기 버튼 생성 및 추가
+const closeBtn = document.createElement("span");
+closeBtn.classList.add("modal-close");
+closeBtn.innerHTML = "&times;";
+modalContent.appendChild(closeBtn);
+
+imageItems.forEach((item) => {
+  item.addEventListener("click", () => {
+    const title = item.dataset.title;
+    const description = item.dataset.description;
+    const imgSrc = item.dataset.img;
+    const additionalText = item.dataset.additionalText;
+    const additionalImgSrc = item.dataset.additionalImg;
+
+    document.body.style.overflow = "hidden"; // 모달이 열릴 때 배경 스크롤 비활성화
+
+    modal.style.display = "block";
+    modalContent.innerHTML = `
+      <span class="modal-close">&times;</span>
+      <h2>${title}</h2>
+      <p>${description}</p>
+      <div>${additionalText}</div>
+      <img src="${additionalImgSrc}" style="width: 100%; height: auto; border-radius: 10px; margin-top: 20px;">
+    `;
+  });
+});
+
+// 모달 닫기 이벤트
+document.addEventListener("click", (e) => {
+  if (e.target.classList.contains("modal-close") || e.target.classList.contains("modal")) {
+    modal.style.display = "none";
+    document.body.style.overflow = "auto"; // 모달이 닫힐 때 배경 스크롤 활성화
+  }
+});
+
+// 질문 폼에서 답변 확인 모달
+document.getElementById("check-answers-btn").addEventListener("click", function (event) {
+  event.preventDefault(); // 기본 제출 동작 방지
+  const answerData = localStorage.getItem("questionData");
+  const modal = document.getElementById("answer-modal");
+
+  // 모달에 common-modal 클래스 추가
+  modal.classList.add("common-modal");
+
+  document.getElementById("answer-text").innerText = answerData ? answerData : "등록된 답변이 없습니다.";
+  modal.style.display = "block";
+});
+
+// 질문 모달 닫기 이벤트
+document.querySelector(".modal-close").addEventListener("click", function () {
+  document.getElementById("answer-modal").style.display = "none";
+});
+
+// 저널 기능
+const journalEntries = document.getElementById("journalEntries");
+
+// 로컬 스토리지에서 기록 목록 불러오기
+function loadJournalEntries() {
+  const entries = JSON.parse(localStorage.getItem("journalEntries")) || [];
+  journalEntries.innerHTML = "";
+  entries.forEach((entry, index) => {
+    journalEntries.innerHTML += `
+      <div class="journal-entry">
+        <h4>${entry.plantName}</h4>
+        <p>날짜: ${entry.date}</p>
+        <p>메모: ${entry.notes}</p>
+        <button onclick="deleteEntry(${index})">삭제</button>
       </div>
-
-      {modalVisible && (
-        <div className="modal" onClick={closeModal}>
-          <div className="modal-content">
-            <span className="modal-close" onClick={closeModal}>
-              &times;
-            </span>
-            <h2>{modalContent.title}</h2>
-            <p>{modalContent.description}</p>
-            <img src={modalContent.img} alt={modalContent.title} style={{ width: "100%" }} />
-          </div>
-        </div>
-      )}
-    </div>
-  );
+    `;
+  });
 }
 
-function Journal() {
-  const [entries, setEntries] = useState([]);
-  const [newEntry, setNewEntry] = useState({ plantName: "", date: "", notes: "" });
+// 저장 버튼 눌렀을 때 처리
+document.querySelector("#journalForm").addEventListener("submit", function (event) {
+  event.preventDefault(); // 폼의 기본 동작(페이지 새로고침) 방지
 
-  // 로컬스토리지에서 불러오기
-  const loadEntries = () => {
-    const storedEntries = JSON.parse(localStorage.getItem("journalEntries")) || [];
-    setEntries(storedEntries);
+  const plantNameInput = document.querySelector("#plantName");
+  const dateInput = document.querySelector("#date");
+  const notesInput = document.querySelector("#notes");
+
+  const entry = {
+    plantName: plantNameInput.value,
+    date: dateInput.value,
+    notes: notesInput.value,
   };
 
-  const saveEntry = () => {
-    const updatedEntries = [...entries, newEntry];
-    setEntries(updatedEntries);
-    localStorage.setItem("journalEntries", JSON.stringify(updatedEntries));
-  };
+  if (entry.plantName.trim() !== "" && entry.date.trim() !== "" && entry.notes.trim() !== "") {
+    // 입력 내용이 비어있지 않으면
+    saveJournalEntry(entry); // 로컬 스토리지에 저장
+    loadJournalEntries(); // 목록 새로 고침
+    plantNameInput.value = "";
+    dateInput.value = "";
+    notesInput.value = "";
+  }
+});
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    saveEntry();
-    setNewEntry({ plantName: "", date: "", notes: "" });
-  };
-
-  return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="식물 이름"
-          value={newEntry.plantName}
-          onChange={(e) => setNewEntry({ ...newEntry, plantName: e.target.value })}
-          required
-        />
-        <input type="date" value={newEntry.date} onChange={(e) => setNewEntry({ ...newEntry, date: e.target.value })} required />
-        <textarea placeholder="기타 메모" value={newEntry.notes} onChange={(e) => setNewEntry({ ...newEntry, notes: e.target.value })} />
-        <button type="submit">저장</button>
-      </form>
-
-      <div>
-        <h3>기록 목록</h3>
-        {entries.map((entry, index) => (
-          <div key={index}>
-            <h4>{entry.plantName}</h4>
-            <p>{entry.date}</p>
-            <p>{entry.notes}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
+// 로컬 스토리지에 기록 저장
+function saveJournalEntry(entry) {
+  const entries = JSON.parse(localStorage.getItem("journalEntries")) || [];
+  entries.push(entry); // 새로운 기록 추가
+  localStorage.setItem("journalEntries", JSON.stringify(entries)); // 로컬 스토리지에 저장
 }
 
-function App() {
-  return (
-    <div>
-      <Gallery />
-      <Journal />
-    </div>
-  );
+// 삭제 기능
+function deleteEntry(index) {
+  const entries = JSON.parse(localStorage.getItem("journalEntries")) || [];
+  entries.splice(index, 1); // 해당 인덱스의 기록 삭제
+  localStorage.setItem("journalEntries", JSON.stringify(entries));
+  loadJournalEntries();
 }
+
+// 페이지 로드 시 기록 목록 불러오기
+document.addEventListener("DOMContentLoaded", loadJournalEntries);
+
+// 질문 제출 시 알림
+document.getElementById("questionForm").addEventListener("submit", function (event) {
+  event.preventDefault(); // 기본 제출 동작 방지
+  alert("질문이 등록되었습니다."); // 알림창 표시
+  this.reset(); // 입력 필드 초기화
+});

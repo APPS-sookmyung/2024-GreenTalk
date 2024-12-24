@@ -72,6 +72,21 @@ ul {
   list-style: none;
   padding-left: 0;
   margin: 0;
+  position: static;
+  display: flex;
+  flex-direction: row;
+}
+
+@media (max-width: 768px) {
+  .navbar__menu {
+    background-color: #ffffff;
+    flex-direction: column;
+    display: none;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+  }
 }
 
 .navbar__menu.active {
@@ -80,6 +95,7 @@ ul {
 
 .navbar__menu li {
   padding: 8px 12px;
+  text-align: center;
 }
 
 .navbar__menu li a {
@@ -87,8 +103,30 @@ ul {
   color: inherit;
 }
 
-.navbar__menu li a.active {
-  color: #1a871a;
+/* 768px 이상 화면에서 active 클래스 효과 */
+@media (min-width: 768px) {
+  .navbar__menu li a.active {
+    color: #1a871a;
+  }
+
+  .navbar__menu li a:hover {
+    /* 768px 이상에서 hover 효과 추가 */
+    color: #1a871a;
+  }
+}
+
+/* 768px 미만 화면에서 hover 효과 (햄버거 메뉴) */
+@media (max-width: 768px) {
+  .navbar__menu li a {
+    /* .active 클래스 없이 li a에 hover 효과 */
+    display: inline-block;
+    width: 100%;
+    padding: 8px 12px;
+  }
+
+  .navbar__menu li a:hover {
+    color: #1a871a;
+  }
 }
 
 .navbar__toggleBtn {
@@ -282,7 +320,7 @@ figcaption {
 
   .modal-content {
     width: 95%;
-    height: calc(100% - 67.5px); /* 모바일 화면 높이에 맞추기 */
+    height: calc(100% - 67.5px);
   }
 }
 
@@ -294,21 +332,33 @@ figcaption {
 
   .modal-content {
     width: 90%;
-    height: calc(100% - 67.5px); /* 모바일 화면 높이에 맞추기 */
+    height: calc(100% - 67.5px);
   }
 }
 
 .modal-content img {
-  max-width: 80%; /* 모달 내 이미지의 최대 너비를 80%로 설정 */
-  height: auto; /* 이미지 비율을 유지 */
-  margin: 0 auto; /* 이미지를 중앙 정렬 */
+  max-width: 80%;
+  height: auto;
+  margin: 0 auto;
 }
 
 /* Journal 섹션 */
 .journal.container,
 .faq-container {
-  display: flex; /* 두 섹션을 수평으로 배치 */
-  gap: 20px; /* 두 섹션 간의 간격 설정 */
+  display: flex;
+  gap: 20px;
+}
+@media (max-width: 768px) {
+  .faq-container {
+    display: flex;
+    flex-direction: column;
+  }
+}
+@media (max-width: 480px) {
+  .faq-container {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .journal-entry {
@@ -493,10 +543,10 @@ input[id*="answer"] + label em {
   flex: 1; /* 질문 작성 섹션의 너비를 1로 설정 */
   margin: auto;
 
-  padding: 20px; /* Padding for spacing */
-  background-color: #f9f9f9; /* Background color */
-  border-radius: 10px; /* Rounded corners */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .question-form h2 {
