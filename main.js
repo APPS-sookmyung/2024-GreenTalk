@@ -1,3 +1,4 @@
+// 섹션 스크롤 이벤트 - 현재 활성화된 메뉴 표시
 const sections = document.querySelectorAll("section");
 const navLi = document.querySelectorAll(".navbar__menu li a");
 
@@ -25,14 +26,8 @@ const toggleBtn = document.querySelector(".navbar__toggleBtn");
 const menu = document.querySelector(".navbar__menu");
 
 toggleBtn.addEventListener("click", () => {
-  menu.style.display = menu.style.display === "none" ? "block" : "none";
-});
-
-document.addEventListener("click", (event) => {
-  if (!menu.contains(event.target) && !toggleBtn.contains(event.target) && !event.target.matches("label") && !event.target.matches("em")) {
-    menu.classList.remove("active");
-    menu.style.display = "none";
-  }
+  const isVisible = menu.style.display === "block";
+  menu.style.display = isVisible ? "none" : "block";
 });
 
 // 이미지 클릭 시 모달 창 띄우기
@@ -73,6 +68,13 @@ imageItems.forEach((item) => {
   });
 });
 
+document.addEventListener("click", (event) => {
+  // 아코디언 요소를 클릭한 경우 무시
+  if (event.target.closest(".accordion") !== null) {
+    return;
+  }
+});
+
 // 모달 닫기 이벤트
 document.addEventListener("click", (e) => {
   if (e.target.classList.contains("modal-close") || e.target.classList.contains("modal")) {
@@ -80,7 +82,6 @@ document.addEventListener("click", (e) => {
     document.body.style.overflow = "auto"; // 모달이 닫힐 때 배경 스크롤 활성화
   }
 });
-
 // 질문 폼에서 답변 확인 모달
 document.getElementById("check-answers-btn").addEventListener("click", function (event) {
   event.preventDefault(); // 기본 제출 동작 방지
