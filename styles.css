@@ -96,6 +96,7 @@ ul {
 .navbar__menu li {
   padding: 8px 12px;
   text-align: center;
+  word-break: keep-all;
 }
 
 .navbar__menu li a {
@@ -144,6 +145,7 @@ ul {
   justify-content: center;
   align-items: flex-start;
   text-align: left;
+  word-break: keep-all;
   padding: 60px;
 }
 
@@ -159,6 +161,7 @@ ul {
 
 .hero p {
   font-size: 1.5em;
+  word-break: keep-all;
 }
 
 .hero .btn {
@@ -169,6 +172,7 @@ ul {
   border: 1px solid #333;
   color: #333;
   text-decoration: none;
+  word-break: keep-all;
   border-radius: 20px;
 }
 
@@ -176,11 +180,13 @@ ul {
 .gallery h1,
 .section h2 {
   text-align: center;
+  word-break: keep-all;
   margin: 20px 0 10px 0;
 }
 
 .section p {
   line-height: 200%;
+  word-break: keep-all;
 }
 
 .section .container {
@@ -221,6 +227,7 @@ figcaption {
   margin-top: 10px;
   font-size: 14px;
   color: #555;
+  text-align: center;
 }
 
 /* 모달 창 스타일 */
@@ -239,6 +246,7 @@ figcaption {
 
 .modal-content {
   text-align: center;
+  word-break: keep-all;
   background-color: #fff;
   position: fixed;
   bottom: -100%;
@@ -306,10 +314,12 @@ figcaption {
 
   .hero h2 {
     font-size: 2em;
+    word-break: keep-all;
   }
 
   .hero p {
     font-size: 1.2em;
+    word-break: keep-all;
   }
 
   .gallery .container,
@@ -375,6 +385,7 @@ figcaption {
 .journal-entry p {
   margin: 5px 0;
   color: #555;
+  word-break: keep-all;
 }
 
 .form-groups {
@@ -407,6 +418,7 @@ figcaption {
 
 #journalEntries {
   text-align: center;
+  word-break: keep-all;
   padding: 20px;
   margin: 10px;
   background-color: #f9f9f9;
@@ -477,6 +489,7 @@ figcaption {
   color: white;
   padding: 10px 20px;
   text-align: center;
+  word-break: keep-all;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
@@ -539,6 +552,7 @@ input[id*="answer"] + label em {
 
 .accordion-section {
   text-align: center;
+  word-break: keep-all;
 }
 /* 질문 작성 섹션 */
 .question-form {
@@ -575,6 +589,7 @@ input[id*="answer"] + label em {
 /* Footer 스타일 */
 footer {
   text-align: center;
+  word-break: keep-all;
   padding: 20px;
   color: #333;
   background-color: #f0f0f0;
@@ -583,6 +598,7 @@ footer {
 
 footer p {
   margin: 0;
+  word-break: keep-all;
 }
 
 /* 모바일 대응: 작은 화면에서는 더 좁게 */
@@ -609,6 +625,7 @@ footer p {
   flex-grow: 1; /* 가용 공간을 차지하게 설정 */
   height: 500px; /* 고정된 높이 */
   text-align: center;
+  word-break: keep-all;
   padding: 20px;
   border: 1px solid #ddd;
   border-radius: 10px;
@@ -633,6 +650,7 @@ footer p {
   margin-top: 2px;
   font-size: 1rem;
   color: #555;
+  word-break: keep-all;
 }
 
 /* Journal 섹션 */
