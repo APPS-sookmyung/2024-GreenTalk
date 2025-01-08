@@ -627,7 +627,7 @@ footer p {
 
 .info__box {
   flex-grow: 1; /* 가용 공간을 차지하게 설정 */
-  height: 500px; /* 고정된 높이 */
+  height: 550px; /* 고정된 높이 */
   text-align: center;
   word-break: keep-all;
   padding: 20px;
@@ -636,6 +636,9 @@ footer p {
   background-color: #f9f9f9;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s ease;
+  @media (max-width: 768px) {
+    height: 520px;
+  }
 }
 
 .info__image {
