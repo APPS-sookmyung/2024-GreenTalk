@@ -360,7 +360,7 @@ figcaption {
 .journal.container,
 .faq-container {
   display: flex;
-  gap: 20px;
+  gap: 0px;
 }
 @media (max-width: 768px) {
   .faq-container {
