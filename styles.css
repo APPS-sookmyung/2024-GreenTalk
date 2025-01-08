@@ -378,11 +378,11 @@ figcaption {
 }
 
 .form-groups {
-  flex: 1; /* 첫 번째 섹션의 너비를 1로 설정 */
+  flex: 1;
 }
 
 .journal-entries-section {
-  flex: 2; /* 두 번째 섹션의 너비를 2로 설정 (더 넓게) */
+  flex: 2;
 }
 
 #journalForm {
@@ -528,9 +528,11 @@ input[id*="answer"] + label em {
   position: absolute;
   top: 50%;
   right: 10px;
-  width: 30px;
-  height: 30px;
+  /* width: 30px;
+  height: 30px; */
   margin-top: -15px;
+  disaplay: flex;
+  justify-content: center;
   display: inline-block;
   background-size: cover;
 }
@@ -597,6 +599,10 @@ footer p {
   gap: 20px; /* 박스 사이 간격 */
   margin-top: 20px;
   margin: 30px auto;
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .info__box {
