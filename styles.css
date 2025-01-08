@@ -191,8 +191,12 @@ ul {
 
 .section .container {
   display: flex;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 40px;
+  flex-direction: row;
+  gap: 0px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 }
 
 .gallery .container {
@@ -470,7 +474,7 @@ figcaption {
 .fa-chevron-down::before {
   content: "\f078";
   font-size: 15px;
-  margin-left: 5px;
+  padding-left: 10px;
 }
 
 .accordion {
